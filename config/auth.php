@@ -1,5 +1,7 @@
 <?php
 
+use Sisdeve\Models\User;
+
 return [
 
     /*
@@ -67,7 +69,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Sisdeve\User::class,
+            'model' => User::class,
         ],
 
         // 'users' => [
