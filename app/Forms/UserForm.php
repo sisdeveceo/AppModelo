@@ -11,11 +11,11 @@ class UserForm extends Form
         $this
             ->add('name', 'text',[
                 'label' => 'Nome.:',
-                'rule' => 'required|max:100'
+                'rules' => 'required|max:100'
             ])
             ->add('email', 'email',[
                 'label' => 'Email.:',
-                'rule' => 'required|max:100|unique:users'
+                'rules' => 'required|max:100|unique:users'
             ]);
     }
 }

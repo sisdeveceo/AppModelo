@@ -2,6 +2,7 @@
 
 namespace Sisdeve\Http\Controllers\Admin;
 
+use Kris\LaravelFormBuilder\Form;
 use Sisdeve\Forms\UserForm;
 use Sisdeve\Models\User;
 use Illuminate\Http\Request;
@@ -41,7 +42,21 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /** @var Form $form */
+
+        $form = \FormBuilder::create(UserForm::class);
+        if(!$form->isValid()){
+            return redirect()
+                ->back()
+                ->withErrors($form->getErrors())
+                ->withInput();
+        }
+        $data = $form->getFieldValues();
+        $password = str_random(6);
+        $data['password'] = $password;
+        User::create($data);
+
+        return redirect()->route('admin.users.index');
     }
 
     /**
